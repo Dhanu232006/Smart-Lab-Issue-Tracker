@@ -32,7 +32,8 @@ const css = `${FONTS}
 .sl-proj-lbl{font-family:var(--mono);font-size:0.7rem;letter-spacing:0.28em;color:var(--cyan);text-transform:uppercase;position:relative;z-index:1;opacity:0.85;}
 .sl-proj-base{width:min(560px,100%);height:5px;background:linear-gradient(90deg,transparent,var(--rim2),var(--rim2),transparent);border-radius:0 0 3px 3px;}
 .sl-proj-sub{font-family:var(--mono);font-size:0.6rem;color:var(--text3);letter-spacing:0.2em;text-transform:uppercase;margin-top:7px;}
-.sl-grid{display:flex;flex-direction:column;gap:14px;align-items:center;justify-content:center;}
+.sl-grid{display:flex;flex-direction:column;gap:14px;align-items:center;justify-content:center;min-width:700px;}
+.sl-grid-scroll{width:100%;overflow-x:auto;overflow-y:hidden;}
 .sl-row{display:flex;align-items:center;width:100%;}
 .sl-cluster{display:flex;gap:10px;}
 .sl-cluster-left{flex:1;justify-content:flex-end;}
@@ -245,18 +246,20 @@ export default function SmartLabTracker({ onAdmin }) {
 
             {loading
               ? <div className="sl-loading">Loading lab map…</div>
-              : <div className="sl-grid">
-                  {LAB_ROWS.map((row,ri)=>(
-                    <div className="sl-row" key={ri}>
-                      <div className="sl-cluster sl-cluster-left">
-                        {row.left.map(n=><PCTile key={n} num={n} frontendStatus={computers[n]?.frontendStatus??"ok"} selected={selected===n} onClick={selectPC}/>)}
+              : <div className="sl-grid-scroll">
+                  <div className="sl-grid">
+                    {LAB_ROWS.map((row,ri)=>(
+                      <div className="sl-row" key={ri}>
+                        <div className="sl-cluster sl-cluster-left">
+                          {row.left.map(n=><PCTile key={n} num={n} frontendStatus={computers[n]?.frontendStatus??"ok"} selected={selected===n} onClick={selectPC}/>)}
+                        </div>
+                        <div className="sl-aisle"><div className="sl-aisle-line"/></div>
+                        <div className="sl-cluster sl-cluster-right">
+                          {row.right.map(n=><PCTile key={n} num={n} frontendStatus={computers[n]?.frontendStatus??"ok"} selected={selected===n} onClick={selectPC}/>)}
+                        </div>
                       </div>
-                      <div className="sl-aisle"><div className="sl-aisle-line"/></div>
-                      <div className="sl-cluster sl-cluster-right">
-                        {row.right.map(n=><PCTile key={n} num={n} frontendStatus={computers[n]?.frontendStatus??"ok"} selected={selected===n} onClick={selectPC}/>)}
-                      </div>
-                    </div>
-                  ))}
+                    ))}
+                  </div>
                 </div>
             }
 
