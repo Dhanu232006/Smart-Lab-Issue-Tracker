@@ -224,7 +224,7 @@ export default function SmartLabTracker({ onAdmin }) {
           <div className="sl-strip-dot"/>
           <strong>Lab 3 — Block B</strong><span className="sl-strip-sep">|</span>
           🏫 Dept. of Computer Science<span className="sl-strip-sep">|</span>
-          🖥️ <strong>29 Systems</strong><span className="sl-strip-sep">|</span>
+          🖥️<strong>29 Systems</strong><span className="sl-strip-sep">|</span>
           🕐 <strong>08:00 AM – 02:30 PM</strong><span className="sl-strip-sep">|</span>
           Batch: <strong>CS-3A</strong>
         </div>
